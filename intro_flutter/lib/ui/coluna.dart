@@ -14,11 +14,7 @@ class Coluna extends StatelessWidget {
           fontSize: 19.0),),
 
           //Expanded(child: Text("Ola"),),
-          Flexible(child: Padding(padding: EdgeInsets.all(13.0),
-          child: FlatButton(onPressed: () => {},
-          child: Text("Botão"),),),),
-          
-          
+          //Flexible(child: Text("Outro"),),
           
           Text("Segundo",
           textDirection: TextDirection.ltr,
