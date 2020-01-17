@@ -5,16 +5,16 @@ class Coluna extends StatelessWidget {
   Widget build(BuildContext context){
     return Container(
       color: Colors.blueAccent,
-      child: Row( 
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
+      child: Stack( 
+          alignment: Alignment.center,
+          children: <Widget>[
           new Text("Primeiro",
           textDirection: TextDirection.ltr,
           style: TextStyle(fontStyle: FontStyle.italic,
           fontSize: 19.0),),
-
+          
           //Expanded(child: Text("Ola"),),
-          //Flexible(child: Text("Outro"),),
+          //Flexible(child: Text("Outro"),),          
           
           Text("Segundo",
           textDirection: TextDirection.ltr,
