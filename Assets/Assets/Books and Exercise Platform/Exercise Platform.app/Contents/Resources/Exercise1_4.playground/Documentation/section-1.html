@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#examplesCollapse" aria-expanded="false" aria-controls="examplesCollapse">
+    
+    Examples
+    
+    </button>
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+      
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint0Collapse" aria-expanded="false" aria-controls="hint0Collapse">
+      
+      Hint 1
+      
+      </button>
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint1Collapse" aria-expanded="false" aria-controls="hint1Collapse">
+      
+      Hint 2
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+    <div class="collapse" id="hint0Collapse">
+      <div class="well">
+        <p>
+        <p><code>sum + diff = a + a + b - b</code><br>
+<code>sum + diff = 2 * a</code>  </p>
+
+        </p>
+      </div>
+    </div>
+      
+    <div class="collapse" id="hint1Collapse">
+      <div class="well">
+        <p>
+        <p><code>sum = a + b</code><br>
+<code>b = sum - a</code>  </p>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">let sum = 16 // a + b
+let diff = 4 // a - b
+
+// sum + diff = a + b + a - b = a + a = 2*a 
+// -> sum + diff = 2*a 
+// -> a = (sum + diff) / 2
+
+var a = (sum + diff) / 2 // 10
+var b = sum - a // 6
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        <p>We notice that if we add the sum and the difference of two numbers we get the double of one of them:</p>
+<pre><code>sum + diff = 
+(a + b) + (a - b) = 
+a + a = 2*a 
+</code></pre>
+
+<p>To get one of the numbers (<code>a</code>) we will half the sum of <code>sum</code> and <code>diff</code>. 
+To get the other one (<code>b</code>) we can subtract the first one (<code>a</code>) from their <code>sum</code>.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    <div class="collapse" id="examplesCollapse">
+      <div class="well example-well ">
+        <table class="table table-collapsed table-bordered">
+          <thead>
+            
+            <th>Input</th>
+            
+            <th>Expected values</th>
+            
+          </thead>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var sum = 16 
+var dif = 4
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">a = 10
+b = 6
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var sum = 2 
+var dif = 0
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">a = 1
+b = 1
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var sum = 4 
+var dif = 2
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">a = 3
+b = 1
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+    
+
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="4">
+<input id="chapterId" type="hidden" value="1">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>

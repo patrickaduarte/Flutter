@@ -1,0 +1,11 @@
+html { 
+  min-height: 800px;
+  max-height: 10000px;
+}
+
+body {
+	min-height: 800px;
+	max-height: 10000px;
+}
+
+

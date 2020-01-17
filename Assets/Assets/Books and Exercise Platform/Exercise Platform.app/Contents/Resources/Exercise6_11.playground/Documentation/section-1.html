@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#examplesCollapse" aria-expanded="false" aria-controls="examplesCollapse">
+    
+    Examples
+    
+    </button>
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+      
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint0Collapse" aria-expanded="false" aria-controls="hint0Collapse">
+      
+      Hint
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+    <div class="collapse" id="hint0Collapse">
+      <div class="well">
+        <p>
+        <p>Use an approach similar to the case with only 2 numbers.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">var numbers = [12, 36, 720, 18]
+
+// find the minimum value in numbers
+var maxDiv = numbers[0]
+
+for number in numbers {
+    if number < maxDiv {
+        maxDiv = number
+    }
+}
+
+var gcd = 1
+
+// find the biggest number that divides all the numbers
+for divisor in 1...maxDiv {
+    // we assume that divisor divides all numbers
+    var dividesAll = true
+    for number in numbers {
+        // if we find one that does not divide by divisor
+        if number % divisor != 0 {
+            // we remeber and stop searching
+            dividesAll = false
+            break
+        }
+    }
+
+    // if divisor divides all numbers then it's the biggest one so far
+    if dividesAll {
+        gcd = divisor
+    }
+}
+
+print(gcd)
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        <p>First we&#39;ll find the largest number in our numbers array (<code>maxDiv</code>), we know that whatever greatest common divisor we&#39;re looking for will be less than the largest number in our array. We keep track of the greatest common divisor in a variable <code>gcd</code>. Next we iterate through all possible divisors between <code>1</code> and <code>maxDiv</code>, for each divisor we check if it divides all numbers if it does we update our <code>gcd</code> variable.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    <div class="collapse" id="examplesCollapse">
+      <div class="well example-well ">
+        <table class="table table-collapsed table-bordered">
+          <thead>
+            
+            <th>Input</th>
+            
+            <th>Output</th>
+            
+          </thead>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var numbers = [12, 36, 720, 18]
+</code></pre>
+</td>
+            
+            
+            
+            <td class="monospace-td"><pre><code>6
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var numbers = [3, 12, 36, 18, 7]
+</code></pre>
+</td>
+            
+            
+            
+            <td class="monospace-td"><pre><code>1
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+    
+
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="11">
+<input id="chapterId" type="hidden" value="6">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>

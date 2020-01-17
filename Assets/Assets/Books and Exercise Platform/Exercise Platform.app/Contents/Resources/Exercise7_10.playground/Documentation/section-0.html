@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 0</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <link rel="stylesheet" type="text/css" href="topSection.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+  <script language="javascript" type="text/javascript" src="topSection.js"></script>
+</head>
+<body>
+    <!-- CONTENT -->
+  <div class="content-wrapper">
+    <section class="section">
+      <div class="row">
+      <div class="col-md-9">
+      <h3>7.10 Parse number</h3>
+
+<p>Write a function named <code>parse(digit:)</code> that takes a string with one character as parameter. The function should return <code>-1</code> if the input is not a digit character and the digit otherwise.</p>
+
+<pre><code class="code-example language-swift">parse(digit: "1") // 1
+parse(digit: "3") // 3
+parse(digit: "a") // -1
+</code></pre>
+
+<p>Using the <code>parse(digit:)</code> function you can determine if a string of length one is a digit or not. Implement a function named <code>isNumber</code> that takes an arbitrary length string and return <code>true</code> if the string contains only digits and <code>false</code> otherwise. Note that empty strings should not be considered numbers.</p>
+
+<pre><code class="code-example language-swift">isNumber("a") // false
+isNumber("1") // true
+isNumber("1234567890") // true
+isNumber("12345abc") // false
+isNumber("") // false
+</code></pre>
+
+<p>Using the <code>isNumber</code> and <code>parse(digit:)</code> functions, write a function named <code>parse(number:)</code> that takes a string and returns it&#39;s values as an integer or <code>-1</code> if the string does not contain only digits.</p>
+
+<pre><code class="code-example language-swift">parse(number: "1")     // 1
+parse(number: "54321") // 54321
+parse(number: "1337")  // 1337
+parse(number: "12cd")  // -1
+</code></pre>
+
+      </div>
+      </div>
+    </section>
+  <!-- </div> -->
+
+
+&nbsp;
+
+</body>
+</html>

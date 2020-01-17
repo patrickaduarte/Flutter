@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#examplesCollapse" aria-expanded="false" aria-controls="examplesCollapse">
+    
+    Examples
+    
+    </button>
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+      
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint0Collapse" aria-expanded="false" aria-controls="hint0Collapse">
+      
+      Hint
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+    <div class="collapse" id="hint0Collapse">
+      <div class="well">
+        <p>
+        <p>Keep in mind that the variable <code>leapYear</code> is a leap year to begin with. Given a leap year how can you generate the next leap year ?</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">var N = 5
+
+// the current leap year
+var leapYear = 2016
+
+// the number of leap years that were printed so far
+var cnt = 0
+
+// until we print N years
+while cnt < N {
+    // print the next leap year
+    print(leapYear)
+
+    // increase the counter
+    cnt += 1
+
+    // go to the next leap year
+    leapYear += 4 
+    if leapYear % 100 == 0 && leapYear % 400 != 0 {
+        leapYear += 4
+    }
+}
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        <p>We start a while loop which stops after we print <code>N</code> leap years. We print the current leap year and jump to the next one - 4 years into the future - except for those special case in which the year is divisible by 100 and not by 400 - then we need to jump 4 more years.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    <div class="collapse" id="examplesCollapse">
+      <div class="well example-well ">
+        <table class="table table-collapsed table-bordered">
+          <thead>
+            
+            <th>Input</th>
+            
+            <th>Output</th>
+            
+          </thead>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var N = 6
+
+// the current leap year
+var leapYear = 2016
+</code></pre>
+</td>
+            
+            
+            
+            <td class="monospace-td"><pre><code>2016
+2020
+2024
+2028
+2032
+2036
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var N = 3
+
+// the current leap year
+var leapYear = 1996
+</code></pre>
+</td>
+            
+            
+            
+            <td class="monospace-td"><pre><code>1996
+2000
+2004
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+    
+
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="13">
+<input id="chapterId" type="hidden" value="4">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>

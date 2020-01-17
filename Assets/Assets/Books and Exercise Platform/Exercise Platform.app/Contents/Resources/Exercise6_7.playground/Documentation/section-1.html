@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+  
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution 1
+      
+      </button>
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution1Collapse" aria-expanded="false" aria-controls="solution1Collapse">
+      
+      Solution 2
+      
+      </button>
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution2Collapse" aria-expanded="false" aria-controls="solution2Collapse">
+      
+      Solution 3
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation 1
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">var listOfNumbers = [1, 2, 3, 10, 100]
+
+var nElements = listOfNumbers.count
+
+for fixedIndex in 0..<nElements {
+    for i in fixedIndex+1..<nElements {
+        if listOfNumbers[fixedIndex] < listOfNumbers[i] {
+            var tmp = listOfNumbers[fixedIndex]
+            listOfNumbers[fixedIndex] = listOfNumbers[i]
+            listOfNumbers[i] = tmp
+        }
+    }
+}
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+    <div class="collapse" id="solution1Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">var listOfNumbers = [1, 2, 3, 10, 100]
+
+var nElements = listOfNumbers.count
+
+var didSwap = true
+
+while didSwap {
+    didSwap = false
+
+    for i in 0..<nElements - 1 {
+        if listOfNumbers[i] < listOfNumbers[i+1] {
+            var tmp = listOfNumbers[i]
+            listOfNumbers[i] = listOfNumbers[i+1]
+            listOfNumbers[i+1] = tmp
+            didSwap = true
+        }
+    }
+}
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+    <div class="collapse" id="solution2Collapse">
+      <div class="well">
+        <p>
+        <p>In real life people don&#39;t implement sorting anymore, they just call it.  </p>
+<pre><code class="code-example language-swift">array.sort(by: <) // will sort the array in ascending order
+array.sort(by: >) // will sort the array in descending order
+
+// you can also use the sorted method to create a sorted copy
+let sortedArray = array.sorted(by: <)
+</code></pre>
+<pre><code class="code-example language-swift">var listOfNumbers = [3, 2, 100, 10, 1]
+
+listOfNumbers.sort(by: <)
+
+print(listOfNumbers)
+// [1, 2, 3, 10, 100]
+
+listOfNumbers.sort(by: >)
+
+print(listOfNumbers)
+// [100, 10, 3, 2, 1]
+</code></pre>
+
+<p>So to solve the problem we would write:</p>
+<pre><code class="code-example language-swift">var listOfNumbers = [3, 2, 100, 10, 1]
+
+listOfNumbers.sort(by: <)
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    
+    
+
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="7">
+<input id="chapterId" type="hidden" value="6">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>

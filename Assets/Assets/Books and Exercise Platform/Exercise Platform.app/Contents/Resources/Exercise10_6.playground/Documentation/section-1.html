@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#examplesCollapse" aria-expanded="false" aria-controls="examplesCollapse">
+    
+    Examples
+    
+    </button>
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+      
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint0Collapse" aria-expanded="false" aria-controls="hint0Collapse">
+      
+      Hint
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+    <div class="collapse" id="hint0Collapse">
+      <div class="well">
+        <p>
+        <p>Keep in mind that you can&#39;t change a tuple when iterating an array using the for in syntax. You&#39;ll have to iterate using an index.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">var strings = ["tuples", "are", "awesome", "tuples", "are", "cool", 
+    "tuples", "tuples", "tuples", "shades"]
+
+var countedStrings: [(String,Int)] = []
+
+for string in strings {
+    var alreadyExists = false
+
+    for i in 0..<countedStrings.count {
+        if (countedStrings[i].0 == string) {
+            countedStrings[i].1 += 1
+            alreadyExists = true
+        }
+    }
+    if alreadyExists == false {
+        let tuple = (string,1)
+        countedStrings.append((string,1))
+    }
+}
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        <p>We&#39;ll want to iterate all the strings in our <code>strings</code> array. The result will be kept in our <code>countedStrings</code> array. At each step of the loop we first check if the string already exists in some tuple of the array, if it does we keep remember that in the boolean variable <code>alreadyExists</code> and increment the count of the tuple by <code>1</code>. After we finish iterating our <code>countedStrings</code> array we check if the <code>string</code> was already in the array, if it wasn&#39;t we add it with a count of 1.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    <div class="collapse" id="examplesCollapse">
+      <div class="well example-well ">
+        <table class="table table-collapsed table-bordered">
+          <thead>
+            
+            <th>Input</th>
+            
+            <th>Expected Value</th>
+            
+          </thead>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var strings = ["tuples", "are", "awesome", "tuples", "are", "cool", 
+    "tuples", "tuples", "tuples", "shades"]
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">countedStrings = [
+    "tuples" : 5,
+    "are" : 2,
+    "awesome" : 1,
+    "cool" : 1,
+    "shades" : 1
+]
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var strings = ["hello", "world", "hello", "swift", "hello", "tuples"]
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">countedStrings = [
+    "hello" : 3,
+    "world" : 1,
+    "swift" : 1,
+    "tuples" : 1
+]
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+    
+
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="6">
+<input id="chapterId" type="hidden" value="10">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>

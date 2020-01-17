@@ -1,0 +1,1 @@
+puts `xcode-select -p`.downcase["xcode"] != nil 

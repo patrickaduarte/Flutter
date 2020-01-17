@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="bottom.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="bottomSection.js"></script>
+  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
+  <script language="javascript" type="text/javascript" src="prism.js"></script>
+</head>
+<body>
+<!-- <div class="content-wrapper"> -->
+  <section class="section">
+
+    <button id="submit" class="btn btn-success btn-sm general" onclick="submit()">Submit</button>
+    
+    <span id="ajax-loading">
+    </span> 
+
+    <button id="nextExercise" class="btn btn-success btn-sm general" onclick="nextExercise()" style="display:none;">Next Exercise</button>
+
+    
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#examplesCollapse" aria-expanded="false" aria-controls="examplesCollapse">
+    
+    Examples
+    
+    </button>
+    
+    <button id="openPDF" class="btn btn-primary btn-sm general" onclick="openPDF()">View Chapter Theory</button>
+
+      
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#hint0Collapse" aria-expanded="false" aria-controls="hint0Collapse">
+      
+      Hint
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#solution0Collapse" aria-expanded="false" aria-controls="solution0Collapse">
+      
+      Solution
+      
+      </button>
+    
+
+        
+    <button class="btn btn-primary general" type="button" data-toggle="collapse" data-target="#explanation0Collapse" aria-expanded="false" aria-controls="explanation0Collapse">
+      
+      Explanation
+      
+      </button>
+    
+
+    <!--  -->
+
+      
+    <div class="collapse" id="hint0Collapse">
+      <div class="well">
+        <p>
+        <p>You&#39;ll have to iterate both arrays at the same time using an index.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="solution0Collapse">
+      <div class="well">
+        <p>
+        <pre><code class="code-example language-swift">func combineArrays(_ array1: [Int], 
+                   _ array2: [Int], 
+                   _ closure: (Int,Int) -> Int) -> [Int] {
+    var result: [Int] = []
+    for i in 0..<array1.count {
+        result.append(closure(array1[i],array2[i]))
+    }
+    return result
+}
+
+</code></pre>
+
+        </p>
+      </div>
+    </div>
+      
+
+      
+    <div class="collapse" id="explanation0Collapse">
+      <div class="well">
+        <p>
+        <p>To combine two arrays we need to iterate through them both at the same time and call the closure with the respective elements. We also need to save the results from each call and return it in the end.</p>
+
+        </p>
+      </div>
+    </div>
+      
+
+    
+
+    <div class="collapse" id="examplesCollapse">
+      <div class="well example-well ">
+        <table class="table table-collapsed table-bordered">
+          <thead>
+            
+            <th>Function input</th>
+            
+            <th>Function output</th>
+            
+          </thead>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var array1 = [1,2,3,4]
+var array2 = [5,5,5,3]
+combineArrays(array1,array2) {
+    $0 * $1
+}
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">[5,10,15,12]
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+          <tr>
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">var array1 = [5,14,77,12]
+var array2 = [1,5,3,13]
+combineArrays(array1,array2) {
+    return max($0,$1)
+}
+</code></pre>
+</td>
+            
+            
+            
+            <td class="code-td"><pre><code class="code-example language-swift">[5,14,77,13]
+</code></pre>
+</td>
+            
+            
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+    <hr/>
+    
+    
+        <button class="btn btn-info general" type="button" data-toggle="collapse" data-target="#function0Collapse" aria-expanded="false" aria-controls="function0Collapse">
+        Function Definition
+        </button>
+    
+
+      
+    <div class="collapse unselectable" id="function0Collapse">
+      <div class="well">
+        <pre><code class="code-example language-swift">func combineArrays(_ array1: [Int], 
+           _ array2: [Int], 
+           _ closure: (Int,Int) -> Int) -> [Int]
+</code></pre>
+
+      </div>
+    </div>
+      
+
+  </section>
+
+
+</div>
+<!-- CONTENT -->
+
+<!-- New UI :) -->
+<input id="exerciseId" type="hidden" value="8">
+<input id="chapterId" type="hidden" value="9">
+<input id="eval_port" type="hidden" value="1337">
+
+
+<div id="alert">
+</div>
+
+<div id="resultDiv">
+</div>
+
+<span>&nbsp;</span>
+
+
+</body>
+</html>
