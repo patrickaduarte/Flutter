@@ -33,11 +33,11 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Nome',
+                        hintText: 'Name',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.5),
                         ),
-                        //icon: Icon(Icons.person)
+                        icon: Icon(Icons.person)
                       ),
                     ),
                   ),
@@ -45,11 +45,11 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Senha',
+                        hintText: 'Password',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.5),
                         ),
-                        //icon: Icon(Icons.person)
+                        icon: Icon(Icons.lock)
                       ),
                     ),
                   ),
