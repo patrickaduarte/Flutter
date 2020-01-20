@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-void botaoFlutuante => debugPrint("Floating Button");
+void botaoFlutuante () => debugPrint("Floating Button");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       appBar: AppBar(
         title: Text("Scaffold"),
         backgroundColor: Colors.orangeAccent,
@@ -14,6 +16,7 @@ void botaoFlutuante => debugPrint("Floating Button");
           IconButton(icon: Icon(Icons.alarm),onPressed: () => debugPrint("Alarm"),),
         ],
       ),
+
       backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
@@ -40,12 +43,14 @@ void botaoFlutuante => debugPrint("Floating Button");
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(items: [
         BottomNavigationBarItem(icon: Icon(Icons.access_alarm), title: Text("Profile")),
         BottomNavigationBarItem(icon: Icon(Icons.print), title: Text("Print"))
       ]),
+
       floatingActionButton: FloatingActionButton(
-        onPressed: botaoFlutuante,
+        onPressed: botaoFlutuante,//() => debugPrint("Floating Button"),
         child: Icon(Icons.add),
         backgroundColor: Colors.deepOrange,
 
