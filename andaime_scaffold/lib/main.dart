@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'ui/home.dart';
+import 'ui/gesture_detector.dart';
 
 void main() => runApp(
   new MaterialApp(
-    title: "Scaffold",
-    home: new Home(),
+    title: "",
+    home: new DetectorEvents(),
   ));
