@@ -6,25 +6,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController _weightController = new TextEditingController();
   int radioValue = 1;
   String _namePlanet = "";
-  double weightPlanet;
+
+  bool selecionValueA = true;
+  bool selecionValueB = false;
+  bool selecionValueC;
+  bool selecionValueD;
+  bool switchValue;
+
+  double _finalResult = 0.0;
 
   void guardValue(int value){
     setState(() {
       radioValue = value;
       switch(radioValue){
         case 0:
-          _namePlanet = "Pluto";
+          _finalResult = calculateWeight(_weightController.text, 0.06);
+          _namePlanet = "Weight in Pluto is ${_finalResult.toStringAsFixed(2)}";
           break;
         case 1:
-          _namePlanet = "Mars";
+          _finalResult = calculateWeight(_weightController.text, 0.38);
+          _namePlanet = "Weight in Mars is ${_finalResult.toStringAsFixed(2)}";
           break;
         case 2:
-          _namePlanet = "Mercury";
+          _finalResult = calculateWeight(_weightController.text, 0.91);
+          _namePlanet = "Weight in Venus is ${_finalResult.toStringAsFixed(2)}";
           break;
         case 3:
-          _namePlanet = "Venus";
+          _finalResult = calculateWeight(_weightController.text, 0.38);
+          _namePlanet = "Weight in Mercury is ${_finalResult.toStringAsFixed(2)}";
           break;
       }
     });
@@ -54,6 +66,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: _weightController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'O seu peso na Terra',
@@ -87,19 +100,8 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Radio<int>(
-                        activeColor: Colors.blueAccent,
-                        value: 2, 
-                        groupValue: radioValue, 
-                        onChanged: guardValue,
-                      ),
-                      Text("Mercury",
-                        style: TextStyle(
-                          color: Colors.white30 
-                        ),
-                      ),
-                      Radio<int>(
                         activeColor: Colors.orangeAccent,
-                        value: 3, 
+                        value: 2, 
                         groupValue: radioValue, 
                         onChanged: guardValue,
                       ),
@@ -108,12 +110,25 @@ class _HomeState extends State<Home> {
                           color: Colors.white30 
                         ),
                       ),
+                      Radio<int>(
+                        activeColor: Colors.blueAccent,
+                        value: 3, 
+                        groupValue: radioValue, 
+                        onChanged: guardValue,
+                      ),
+                      Text("Mercury",
+                        style: TextStyle(
+                          color: Colors.white30 
+                        ),
+                      ),
                     ],
                   ),
-                  Text("$_namePlanet",
+                  Text(
+                    _weightController.text.isEmpty ? "Insert your weight" : _namePlanet + "Kg",
+                    //"$_namePlanet",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 35.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.w900,
                     ),
                   )
