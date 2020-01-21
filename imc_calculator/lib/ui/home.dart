@@ -6,6 +6,43 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController _heightController = new TextEditingController();
+  final TextEditingController _weightController = new TextEditingController();
+  
+  String _printIdeal = "";
+  double _finalResult = 0.0;
+  
+  void printImc(){
+    setState(() {
+      _finalResult = calculateImc(_weightController.text, _heightController.text);
+      
+      if (_finalResult >= 40){
+        _printIdeal = "Obesity III";
+        _finalResult.toString();
+      }
+      else if(_finalResult >= 35){
+        _printIdeal = "Obesity II";
+        _finalResult.toString();
+      }
+      else if(_finalResult >= 30){
+        _printIdeal = "Obesity I";
+        _finalResult.toString();
+      }
+      else if(_finalResult >= 25){
+        _printIdeal = "Overweight";
+        _finalResult.toString();
+      }
+      else if(_finalResult >= 18.5){
+        _printIdeal = "Normal weight";
+        _finalResult.toString();
+      }
+      else {
+         _printIdeal = "Under weight";
+         _finalResult.toString();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +77,7 @@ class _HomeState extends State<Home> {
                     )
                   ),
                   TextField(
+                    controller: _heightController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Height(m)',
@@ -48,6 +86,7 @@ class _HomeState extends State<Home> {
                     )
                   ),
                   TextField(
+                    controller: _weightController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Weight(kg)',
@@ -61,7 +100,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         Container(
                           child: RaisedButton(
-                            onPressed: ()=>{},
+                            onPressed: printImc,
                             color: Colors.pink,
                             child: Text("Calcule",
                               style: TextStyle(
@@ -79,14 +118,26 @@ class _HomeState extends State<Home> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: Text("22.96",
+              child: Text(_finalResult.toStringAsFixed(2),
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.blueAccent,
                   fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: Text(_printIdeal,
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Colors.pink,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             )
@@ -95,4 +146,9 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+double calculateImc (String peopleWeight, String peopelHeight){
+   if (double.parse(peopleWeight).toString().isNotEmpty && double.parse(peopelHeight).toString().isNotEmpty){
+      return (double.parse(peopleWeight) / (double.parse(peopelHeight) * (double.parse(peopelHeight))));
+    }
 }
