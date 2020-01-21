@@ -10,11 +10,11 @@ class _HomeState extends State<Home> {
   int radioValue = 1;
   String _namePlanet = "";
 
-  bool selecionValueA = true;
+  /* bool selecionValueA = true;
   bool selecionValueB = false;
   bool selecionValueC;
   bool selecionValueD;
-  bool switchValue;
+  bool switchValue; */
 
   double _finalResult = 0.0;
 
