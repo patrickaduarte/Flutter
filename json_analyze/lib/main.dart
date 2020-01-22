@@ -4,30 +4,18 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async{
-  List data = await getJson();
+  List _data = await getJson();
+  String _body = "";
   
-  for(int i = 0; i < data.length; i++){
-    debugPrint("Name: ${data[i]['name']}");
-    debugPrint("Id: ${data[i]['id']}");
-  }
+  /* for(int i = 0; i < _data.length; i++){
+    debugPrint("Name: ${_data[i]['name']}");
+    debugPrint("Id: ${_data[i]['id']}");
+  } */
 
-  runApp(MyApp());
-}
+  _body = _data[0]['body'];
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {    
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  runApp(MaterialApp(
+    home: Scaffold(
       appBar: AppBar(
         title: Text("JSON"),
       ),
@@ -35,16 +23,23 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Body: $_body',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.pinkAccent
+                ),
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
+    )
+  ));
 }
-
 Future<List> getJson() async {
   String url = 'https://jsonplaceholder.typicode.com/comments';
 
