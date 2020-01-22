@@ -22,16 +22,16 @@ void main() async{
                   title: Text(
                     "${_data[position]['email']}"
                   ),
-                  subtitle: Text(
+                  /* subtitle: Text(
                     "${_data[position]['body']}"
-                  ),
+                  ), */
                   leading: CircleAvatar(
                     backgroundColor: Colors.greenAccent,
                     child: Text(
                       "${_data[position]['email'][0]}"
                     ),
                   ),
-                  onTap: () => debugPrint("${_data[position]['id'].toString()}"),
+                  onTap: () => _showMessage(context, _data[position]['body'], _data[position]['email']),
                 )
               ],
             ); 
@@ -40,6 +40,22 @@ void main() async{
       ),
     )
   ));
+}
+
+void _showMessage(BuildContext context, String message, String email){
+  var alert = new AlertDialog(
+    title: Text(email),
+    content: Text(message),
+    actions: <Widget>[
+      FlatButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text("OK"),
+      )
+    ],
+  );
+  showDialog(context: context, builder: (context) => alert);
 }
 Future<List> getJson() async {
   String url = 'https://jsonplaceholder.typicode.com/comments';
