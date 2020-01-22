@@ -4,6 +4,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async{
+  List data = await getJson();
+  
+  for(int i = 0; i < data.length; i++){
+    debugPrint("Name: ${data[i]['name']}");
+    debugPrint("Id: ${data[i]['id']}");
+  }
+
   runApp(MyApp());
 }
 
