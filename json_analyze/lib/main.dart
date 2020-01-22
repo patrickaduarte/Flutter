@@ -5,14 +5,6 @@ import 'package:http/http.dart' as http;
 
 void main() async{
   List _data = await getJson();
-  String _body = "";
-  
-  /* for(int i = 0; i < _data.length; i++){
-    debugPrint("Name: ${_data[i]['name']}");
-    debugPrint("Id: ${_data[i]['id']}");
-  } */
-
-  _body = _data[0]['body'];
 
   runApp(MaterialApp(
     home: Scaffold(
@@ -20,21 +12,30 @@ void main() async{
         title: Text("JSON"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Body: $_body',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.pinkAccent
-                ),
-              ),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: _data.length,
+          padding: const EdgeInsets.all(14.5),
+          itemBuilder: (BuildContext context, int position) {
+            return Column(children: <Widget>[
+                Divider(height: 5.5,),
+                ListTile(
+                  title: Text(
+                    "${_data[position]['email']}"
+                  ),
+                  subtitle: Text(
+                    "${_data[position]['body']}"
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    child: Text(
+                      "${_data[position]['email'][0]}"
+                    ),
+                  ),
+                  onTap: () => debugPrint("${_data[position]['id'].toString()}"),
+                )
+              ],
+            ); 
+          }
         ),
       ),
     )
