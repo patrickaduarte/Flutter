@@ -2,66 +2,99 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
-void main() async{
-  //List _data = await getJson();
-  List _data = await jsonComplex();
+Map _data;
+List _features;
 
-	/* for(int i = 0; i < _data.length; i++){
-		debugPrint("${_data[i]['address']['geo']['lat']}");
-		debugPrint("${_data[i]['address']['geo']['log']}");
-		debugPrint("${_data[i]['company']['name']}");
-	}
- */
+void main () async {
+  _data = await catchEarthquakes();
+  _features = _data['features'];
 
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: Text("Earthquake"),
-        centerTitle: true,
-      ),
-      body: Center(
-				child:/*  Row(
-					children: <Widget>[
-						Column(
-							children: <Widget>[ */
-								ListView.builder(
-                  itemCount: _data.length,
-                  padding: EdgeInsets.all(14.5),
-                  itemBuilder: (BuildContext context, int position){
-                    return Column (
-                      children: <Widget>[
-                        Divider(height: 5.5,),
-                        ListTile(
-                          title: Text(
-                            "${_data[position]['name']}"
-                          ),
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.blueAccent,
-                            child: Text(
-                              "${_data[position]['name'][0]}"
-                            ),
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                )
-							/* ],
-						)
-					],
-				), */
-      ),
+  runApp(
+    new MaterialApp(
+    home: Earthquake(),
     )
-  ));
+  );
 }
 
 
-void _showMessage(BuildContext context, String message, String email){
+class Earthquake extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Earthquakes"),
+        centerTitle: true,
+        backgroundColor: Colors.red,
+      ),
+      body: Center(
+        child: 
+        ListView.builder(
+          itemCount: _features.length,
+          padding: EdgeInsets.all(14.5),
+          itemBuilder: (BuildContext context, int position){
+            
+            var format = new DateFormat.yMMMMd("en_US").add_jm();
+            var date = format.format(new DateTime.fromMicrosecondsSinceEpoch(_features[position]['properties']['time'] * 1000));
+            
+            return Column (
+              children: <Widget>[
+                Divider(height: 5.5,),
+                ListTile(
+                  title: Text(
+                    "$date",
+                    style: TextStyle(
+                      fontSize: 15.5,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                  subtitle: Text(
+                    "${_features[position]['properties']['place']}",
+                    style: TextStyle(
+                      fontSize: 14.5,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    child: Text(
+                      "${_features[position]['properties']['mag']}",
+                      style: TextStyle(
+                        fontSize: 16.5,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.normal
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    _showMessage(context, "${_features[position]['properties']['mag']}", "${_features[position]['properties']['place']}");
+                  } 
+                )
+              ],
+            );
+          },
+        )
+      ),
+    );
+  }
+}
+
+Future<Map> catchEarthquakes () async {
+  String url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+
+  http.Response response = await http.get(url);
+  return json.decode(response.body);
+}
+
+void _showMessage(BuildContext context, String mag, String place){
   var alert = new AlertDialog(
-    title: Text(email),
-    content: Text(message),
+    title: Text("Earthquake"),
+    content: Text("M $mag - $place"),
     actions: <Widget>[
       FlatButton(
         onPressed: () {
@@ -73,53 +106,3 @@ void _showMessage(BuildContext context, String message, String email){
   );
   showDialog(context: context, builder: (context) => alert);
 }
-/* Future<List> getJson() async {
-  String url = 'https://jsonplaceholder.typicode.com/comments';
-
-  http.Response response = await http.get(url);
-  //status code == 200 = OK
-  if (response.statusCode == 200){
-    return json.decode(response.body);
-  }
-  else {
-    throw Exception('Fail');
-  }
-} */
-Future<List> jsonComplex() async {
-  String url = 'https://jsonplaceholder.typicode.com/users';
-
-  http.Response response = await http.get(url);
-  //status code == 200 = OK
-  if (response.statusCode == 200){
-    return json.decode(response.body);
-  }
-  else {
-    throw Exception('Fail');
-  }
-}
-
-/* child: ListView.builder(
-          itemCount: _data.length,
-          padding: const EdgeInsets.all(14.5),
-          itemBuilder: (BuildContext context, int position) {
-            return Column(children: <Widget>[
-                Divider(height: 5.5,),
-                ListTile(
-                  title: Text(
-                    "${_data[position]['email']}"
-                  ),
-                  /* subtitle: Text(
-                    "${_data[position]['body']}"
-                  ), */
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.greenAccent,
-                    child: Text(
-                      "${_data[position]['email'][0]}"
-                    ),
-                  ),
-                  onTap: () => _showMessage(context, _data[position]['body'], _data[position]['email']),
-                )
-              ],
-            ); 
-          }
-        ), */
