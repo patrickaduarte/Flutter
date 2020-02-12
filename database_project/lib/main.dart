@@ -2,41 +2,16 @@ import 'package:database_project/ui/helper_db.dart';
 import 'package:flutter/material.dart';
 import 'models/user.dart';
 
+List _allUsers = [];
+
 void main() async {
   runApp(new Home());
-  //OPEN DATABASE
   var db = new DataBaseHelper();
+  _allUsers = await db.takeUsers();
   
-  //CREATE USER
-  //int insertUser = await db.insertUser(User("Arão","12344"));
-  
-  //LIST USERS
-  //List users = await db.takeUsers();
-  //print(users); 
-  
-  //COUNT USERS
-  //int countUsers = await db.takeCount();
-  
-  //PICK UP SPECIFIC USER FROM ID
-  //User printUser = await db.takeUser(id); 
-
-  //DELETE USER
-  //await db.deleteUser(1); 
-  
-  //UPDATE USER
-  /* User updateUser = User.fromMap(
-    {
-      "name": "new name",
-      "pass": "new pass",
-      "id": id
-    }
-  );
-  int updated = await db.updateUser(updateUser); */
-  
-  //CLOSE DATABASE
-  //db = await db.close();
 }
 class Home extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp (
@@ -44,8 +19,24 @@ class Home extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("DB Project"),
-          centerTitle: true,
           backgroundColor: Colors.black38,
+        ),
+        body: ListView.builder(
+          itemCount: _allUsers.length,
+          itemBuilder: (BuildContext context, int position) {
+            return Card(
+              color: Colors.white,
+              elevation: 2.0,
+              child: ListTile(
+                leading: CircleAvatar(
+                  child: Text("${User.fromMap(_allUsers[position]).name.substring(0,1)}"),
+                ),
+                title: Text("User: ${User.fromMap(_allUsers[position]).name}"),
+                subtitle: Text("Id: ${User.fromMap(_allUsers[position]).id}"),
+                onTap: () => debugPrint("Password: ${User.fromMap(_allUsers[position]).pass}"),
+              ),
+            );
+          },
         ),
       ),
     );
