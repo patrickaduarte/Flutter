@@ -38,7 +38,7 @@ class Assignment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8.0),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(_taskName,
@@ -50,10 +50,10 @@ class Assignment extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(top: 5.0),
-            child: Text("Create on $taskDateCreate",
+            child: Text("$taskDateCreate",
               style: TextStyle(
                 color: Colors.white70,
-                fontSize: 12.5,
+                fontSize: 11.5,
                 fontStyle: FontStyle.italic 
               ),
             ),
