@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mobx_project/controllers/controller.dart';
+import 'package:mobx_project/ui/body.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,34 +11,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
-  _textField({String labelText, onChange}) {
-    return TextField(
-      onChanged: onChange,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: labelText,
-        errorText: "erro"//errorText == null ? null : errorText(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    final controller = Provider.of<Controller>(context); //GetIt.I.get<Controller>();
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            _textField(
-              labelText: "Name"
-            )
-          ],
+        title: Observer(
+          builder: (_) { 
+            return Text(controller.isValid 
+              ? 'Validated form' 
+              : 'Invalid form'
+            );
+          },
         ),
       ),
+      body: BodyWidget(),
     );
   }
 }
