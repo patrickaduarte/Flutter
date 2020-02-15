@@ -8,15 +8,29 @@ abstract class _HomeControllerBase with Store {
   
 
   @observable
-  ObservableList<ItemModel> listItems = [
-    ItemModel(title: "Item 1"),
-    ItemModel(title: "Item 2"),
-    ItemModel(title: "Item 3"),
-  ].asObservable();
-
+  ObservableList<ItemModel> listItems = ObservableList<ItemModel>().asObservable();
 
   @computed
   int get totalChecked => listItems.where((item) => item.check).length;
+
+  @computed
+  List<ItemModel> get listFiltered {
+    if (filter.isEmpty) {
+      return listItems;
+    }
+    else {
+      return listItems
+        .where((item) => 
+          item.title.toLowerCase().contains(filter.toLowerCase()))
+        .toList();
+    }
+  }
+
+  @observable
+  String filter = '';
+
+  @action
+  setFilter(String value) => filter = value;
 
   @action
   addItem(ItemModel model) {
